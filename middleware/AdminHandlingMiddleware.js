@@ -1,13 +1,11 @@
-import ApiError from "../error/ApiError";
-import { passwords } from "../consts";
+import ApiError from "../error/ApiError.js";
 
 const AdminHandlingMiddleware = (req, res, next) => {
   try {
-    const { password } = req.body;
-    if (!password !== Object.keys(passwords).includes(password)) {
+    const { password } = req.headers;
+    if (password !== process.env.BOT_PASSOWRD) {
       return next(ApiError.forbidden("Недостаточно прав"));
     }
-    req.group = passwords[password];
     next();
   } catch (error) {
     console.log(error);
