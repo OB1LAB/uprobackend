@@ -1,7 +1,9 @@
 import * as fs from "fs";
 import libs from "../libs.js";
 class ScheduleController {
-  schedule = JSON.parse(fs.readFileSync(`schedule.json`).toString());
+  constructor() {
+    this.schedule = JSON.parse(fs.readFileSync(`schedule.json`).toString());
+  }
   async get(req, res, next) {
     try {
       res.json(this.schedule);
