@@ -164,36 +164,38 @@ class Libs {
                     newCount += 1;
                   }
                 });
-                if (oldCount > newCount) {
+                if (oldCount < newCount) {
                   if (
                     parseInt(week) === currentWeek ||
                     parseInt(week) === currentWeek + 1
                   ) {
                     currentLogs[group].logs.push(
-                      `Удалён предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
+                      `Удалён предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели`,
                     );
                     if (!currentLogs[group].weeksEdit.includes(week)) {
                       currentLogs[group].weeksEdit.push(week);
                     }
+                  } else {
+                    totalLogs[group].push(
+                      `Удалён предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели`,
+                    );
                   }
-                  totalLogs[group].push(
-                    `Удалён предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
-                  );
-                } else if (newCount > oldCount) {
+                } else if (oldCount > newCount) {
                   if (
                     parseInt(week) === currentWeek ||
                     parseInt(week) === currentWeek + 1
                   ) {
                     currentLogs[group].logs.push(
-                      `Добавлен предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
+                      `Добавлен предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели`,
                     );
                     if (!currentLogs[group].weeksEdit.includes(week)) {
                       currentLogs[group].weeksEdit.push(week);
                     }
+                  } else {
+                    totalLogs[group].push(
+                      `Добавлен предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели`,
+                    );
                   }
-                  totalLogs[group].push(
-                    `Добавлен предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
-                  );
                 }
               });
             } else {
@@ -202,15 +204,16 @@ class Libs {
                 parseInt(week) === currentWeek + 1
               ) {
                 currentLogs[group].logs.push(
-                  `Удален ${weekDay} на ${week} недели у группы ${group}Б`,
+                  `Удален ${weekDay} на ${week} недели`,
                 );
                 if (!currentLogs[group].weeksEdit.includes(week)) {
                   currentLogs[group].weeksEdit.push(week);
                 }
+              } else {
+                totalLogs[group].push(
+                  `Удален ${weekDay} на ${week} недели`,
+                );
               }
-              totalLogs[group].push(
-                `Удален ${weekDay} на ${week} недели у группы ${group}Б`,
-              );
             }
           });
         } else {
@@ -218,9 +221,9 @@ class Libs {
             parseInt(week) === currentWeek ||
             parseInt(week) === currentWeek + 1
           ) {
-            currentLogs.push(`Удалена ${week} неделя у группы ${group}Б`);
+            currentLogs.push(`Удалена ${week} неделя`);
           }
-          totalLogs.push(`Удалена ${week} неделя у группы ${group}Б`);
+          totalLogs.push(`Удалена ${week} неделя`);
         }
       });
       Object.keys(newSchedule[group]).forEach((week) => {
@@ -248,36 +251,38 @@ class Libs {
                     newCount += 1;
                   }
                 });
-                if (oldCount > newCount) {
+                if (oldCount < newCount) {
                   if (
                     parseInt(week) === currentWeek ||
                     parseInt(week) === currentWeek + 1
                   ) {
                     currentLogs[group].logs.push(
-                      `Удалён предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
+                      `Удалён предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели`,
                     );
                     if (!currentLogs[group].weeksEdit.includes(week)) {
                       currentLogs[group].weeksEdit.push(week);
                     }
+                  } else {
+                    totalLogs[group].push(
+                      `Удалён предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели`,
+                    );
                   }
-                  totalLogs[group].push(
-                    `Удалён предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
-                  );
-                } else if (newCount > oldCount) {
+                } else if (oldCount > newCount) {
                   if (
                     parseInt(week) === currentWeek ||
                     parseInt(week) === currentWeek + 1
                   ) {
                     currentLogs[group].logs.push(
-                      `Добавлен предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
+                      `Добавлен предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели`,
                     );
                     if (!currentLogs[group].weeksEdit.includes(week)) {
                       currentLogs[group].weeksEdit.push(week);
                     }
+                  } else {
+                    totalLogs[group].push(
+                      `Добавлен предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели`,
+                    );
                   }
-                  totalLogs[group].push(
-                    `Добавлен предмет ${oldLesson.name} (${oldLesson.type}) ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
-                  );
                 } else if (
                   newCount === 1 &&
                   (parseInt(week) === currentWeek ||
@@ -294,7 +299,7 @@ class Libs {
                   );
                   if (oldLesson.pos !== findLesson.pos) {
                     currentLogs[group].logs.push(
-                      `Изменена аудитория предмета ${oldLesson.name} (${oldLesson.type}) с ${findLesson.pos} на ${oldLesson.pos} ${weekdayDifference[weekDay]} на ${week} недели у группы ${group}Б`,
+                      `Изменена аудитория предмета ${oldLesson.name} (${oldLesson.type}) с ${findLesson.pos} на ${oldLesson.pos} ${weekdayDifference[weekDay]} на ${week} недели`,
                     );
                     if (!currentLogs[group].weeksEdit.includes(week)) {
                       currentLogs[group].weeksEdit.push(week);
