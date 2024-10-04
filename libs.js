@@ -332,6 +332,9 @@ class Libs {
       if (totalLogs[group].length > 0) {
         isEdit = true;
       }
+      if (currentLogs[group].length > 0) {
+        isEdit = true;
+      }
     });
     if (isEdit) {
       fs.writeFileSync(`schedule.json`, JSON.stringify(newSchedule), () => {});
