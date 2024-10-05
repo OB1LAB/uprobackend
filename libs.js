@@ -299,7 +299,7 @@ class Libs {
                   );
                   if (oldLesson.pos !== findLesson.pos) {
                     currentLogs[group].logs.push(
-                      `Изменена аудитория предмета ${oldLesson.name} (${oldLesson.type}) с ${findLesson.pos} на ${oldLesson.pos} ${weekdayDifference[weekDay]} на ${week} недели`,
+                      `Изменена аудитория предмета ${oldLesson.name} (${oldLesson.type}) с ${oldLesson.pos} на ${findLesson.pos} ${weekdayDifference[weekDay]} на ${week} недели`,
                     );
                     if (!currentLogs[group].weeksEdit.includes(week)) {
                       currentLogs[group].weeksEdit.push(week);
