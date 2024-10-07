@@ -321,22 +321,13 @@ class Libs {
     };
   }
   async generateDifference() {
-    let isEdit = false;
     const newSchedule = await this.getSchedule();
     const oldSchedule = JSON.parse(fs.readFileSync(`schedule.json`).toString());
     const { currentLogs, totalLogs } = this.getDifferenceSchedule(
       newSchedule,
       oldSchedule,
     );
-    Object.keys(totalLogs).forEach((group) => {
-      if (totalLogs[group].length > 0) {
-        isEdit = true;
-      }
-      if (currentLogs[group].length > 0) {
-        isEdit = true;
-      }
-    });
-    if (isEdit) {
+    if (Object.keys(totalLogs).length > 0 || Object.keys(currentLogs).length > 0) {
       fs.writeFileSync(`schedule.json`, JSON.stringify(newSchedule), () => {});
     }
     return {
