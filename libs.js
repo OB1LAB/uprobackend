@@ -210,9 +210,7 @@ class Libs {
                   currentLogs[group].weeksEdit.push(week);
                 }
               } else {
-                totalLogs[group].push(
-                  `Удален ${weekDay} на ${week} недели`,
-                );
+                totalLogs[group].push(`Удален ${weekDay} на ${week} недели`);
               }
             }
           });
@@ -221,9 +219,12 @@ class Libs {
             parseInt(week) === currentWeek ||
             parseInt(week) === currentWeek + 1
           ) {
-            currentLogs.push(`Удалена ${week} неделя`);
+            currentLogs[group].logs.push(`Удалена ${week} неделя`);
+            if (!currentLogs[group].weeksEdit.includes(week)) {
+              currentLogs[group].weeksEdit.push(week);
+            }
           }
-          totalLogs.push(`Удалена ${week} неделя`);
+          totalLogs[group].push(`Удалена ${week} неделя`);
         }
       });
       Object.keys(newSchedule[group]).forEach((week) => {
@@ -327,7 +328,10 @@ class Libs {
       newSchedule,
       oldSchedule,
     );
-    if (Object.keys(totalLogs).length > 0 || Object.keys(currentLogs).length > 0) {
+    if (
+      Object.keys(totalLogs).length > 0 ||
+      Object.keys(currentLogs).length > 0
+    ) {
       fs.writeFileSync(`schedule.json`, JSON.stringify(newSchedule), () => {});
     }
     return {
