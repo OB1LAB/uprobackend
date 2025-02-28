@@ -48,6 +48,7 @@ class Libs {
       scheduleData[currentGroup] = {};
       const bodyFormData = new FormData();
       bodyFormData.append("funct", "group_semestr");
+      bodyFormData.append("sem", "весенний семестр");
       bodyFormData.append("group_id", this.groups[currentGroup]);
       const res = await axios.post(
         "https://isu.uust.ru/module/schedule/schedule_2024_script.php",
