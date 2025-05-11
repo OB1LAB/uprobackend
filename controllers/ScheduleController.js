@@ -24,4 +24,8 @@ class ScheduleController {
 }
 
 let schedule = JSON.parse(fs.readFileSync(`schedule.json`).toString());
+schedule = {
+  ...schedule,
+  ...JSON.parse(fs.readFileSync(`school.json`).toString()),
+};
 export default new ScheduleController();
