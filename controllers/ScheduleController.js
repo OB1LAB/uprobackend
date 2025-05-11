@@ -12,6 +12,10 @@ class ScheduleController {
     try {
       const data = await libs.generateDifference();
       schedule = JSON.parse(fs.readFileSync(`schedule.json`).toString());
+      schedule = {
+        ...schedule,
+        ...JSON.parse(fs.readFileSync(`school.json`).toString()),
+      };
       res.json(data);
     } catch (e) {
       next(e);
