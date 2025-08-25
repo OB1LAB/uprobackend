@@ -1,5 +1,5 @@
 import axios from "axios";
-import fs from "fs";
+import * as fs from "fs";
 import moment from "moment-timezone";
 const weekdayConverter = {
   1: "Понедельник",
@@ -41,14 +41,14 @@ const getCurrentWeek = () => {
   );
 };
 class Libs {
-  groups = { 201: "6225", 202: "6226", 203: "6227", 204: "6228" };
+  groups = { 301: "10008", 302: "10009", 303: "10010", 304: "10011" };
   async getSchedule() {
     const scheduleData = {};
     for (const currentGroup of Object.keys(this.groups)) {
       scheduleData[currentGroup] = {};
       const bodyFormData = new FormData();
       bodyFormData.append("funct", "group_semestr");
-      bodyFormData.append("sem", "весенний семестр");
+      bodyFormData.append("sem", "осенний+семестр");
       bodyFormData.append("group_id", this.groups[currentGroup]);
       const res = await axios.post(
         "https://isu.uust.ru/module/schedule/schedule_2024_script.php",
@@ -339,6 +339,20 @@ class Libs {
       currentLogs,
       totalLogs,
     };
+  }
+  checkFirstStart() {
+    const files = fs.readdirSync(".");
+    if (!files.includes("schedule.json")) {
+      const scheduleObject = {};
+      for (const group of Object.keys(this.groups)) {
+        scheduleObject[group] = {};
+      }
+      fs.writeFileSync(
+        `schedule.json`,
+        JSON.stringify(scheduleObject),
+        () => {},
+      );
+    }
   }
 }
 
