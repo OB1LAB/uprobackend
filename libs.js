@@ -41,7 +41,7 @@ const getCurrentWeek = () => {
   );
 };
 class Libs {
-  groups = { 301: "10008", 302: "10009", 303: "10010", 304: "10011" };
+  groups = { 401: "12697", 402: "12698", 403: "12699", 404: "12700" };
   async getSchedule() {
     const scheduleData = {};
     for (const currentGroup of Object.keys(this.groups)) {
